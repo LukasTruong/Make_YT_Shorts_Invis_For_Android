@@ -1,7 +1,8 @@
 # Make_YT_Shorts_Invis_For_Android
 A lightweight Android app that wraps YouTube in a browser view with one job: strip out all Shorts content, but still give you the expirience of watching in a app and not the browser.
 
-What it is
+What it is:
+
 This is not a full YouTube client. 
 
 It loads YouTube's standard URL (the same as opening it in your phone's browser) and removes every trace of Shorts, so you can browse, search, and watch without the clutter.
