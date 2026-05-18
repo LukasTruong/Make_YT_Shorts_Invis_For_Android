@@ -28,9 +28,9 @@ After that
 9. When the "Allow USB debugging?" prompt appears, tap OK or Allow
 
 
-#Important Security Note
+# Important Security Note
 Leaving USB debugging enabled can pose a security risk, as it allows connected computers to access deep system data or bypass lock-screen commands. 
-It is highly recommended to toggle the USB debugging switch OFF when you are done using it for app development or data transfer
+It is highly recommended to toggle the USB debugging switch OFF when you are done installing the app.
 
 
 # Getting the app
