@@ -7,6 +7,10 @@ import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.OnBackPressedCallback
 import com.hakim.noshorts.R
+import android.view.View
+import android.view.WindowManager
+import android.webkit.WebChromeClient
+import android.widget.FrameLayout
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +43,33 @@ class MainActivity : AppCompatActivity() {
             override fun onPageFinished(view: WebView, url: String) {
                 injectCSS(view)
                 injectJS(view)
+            }
+        }
+
+        webView.webChromeClient = object : WebChromeClient() {
+            private var customView: View? = null
+            private var customViewCallback: CustomViewCallback? = null
+
+            override fun onShowCustomView(view: View, callback: CustomViewCallback) {
+                customView = view
+                customViewCallback = callback
+                (window.decorView as FrameLayout).addView(
+                    view, FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT
+                    )
+                )
+                webView.visibility = View.GONE
+                window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            }
+
+            override fun onHideCustomView() {
+                (window.decorView as FrameLayout).removeView(customView)
+                customView = null
+                customViewCallback?.onCustomViewHidden()
+                customViewCallback = null
+                webView.visibility = View.VISIBLE
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             }
         }
 
