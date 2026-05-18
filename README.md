@@ -43,7 +43,7 @@ Steps
 
 1. Open the NoShorts folder in Android Studio
 2. Wait for the project to finish loading and syncing
-3. In the top menu, go to Build → Compile 'NoShorts.app.main' — this confirms everything is set up correctly
+3. In the top menu, go to Build → Compile 'NoShorts.app.main' this confirms everything is set up correctly
 4. Connect your phone to your computer via USB
-5. Press Run — Android Studio will install and launch the app on your phone
+5. Press Run Android Studio will install and launch the app on your phone
 
