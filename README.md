@@ -9,9 +9,9 @@ It loads YouTube's standard URL (the same as opening it in your phone's browser)
 
 So it's not:
 
-A replacement for the official YouTube app
-A standalone video player
-Ad-free (it's still just YouTube in a wrapper)
+A replacement for the official YouTube app,
+A standalone video player 
+or Ad-free (it's still just YouTube in a wrapper)
 
 # Configuring your phone
 1. Open the Settings app on your Android device.
@@ -36,7 +36,7 @@ It is highly recommended to toggle the USB debugging switch OFF when you are don
 # Getting the app
 Prerequisites
 
-Android Studio installed
+Android Studio installed and
 USB debugging enabled on your phone
 
 Steps
