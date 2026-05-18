@@ -1,0 +1,50 @@
+/* Shorts shelf on the homepage */
+ytd-rich-shelf-renderer[is-shorts],
+ytd-reel-shelf-renderer {
+  display: none !important;
+}
+
+/* Shorts link in the left sidebar */
+ytd-guide-entry-renderer:has(a[href="/shorts"]),
+ytd-guide-entry-renderer:has(a[href^="/shorts"]),
+ytd-guide-entry-renderer:has([title="Shorts"]),
+ytd-mini-guide-entry-renderer:has(a[href="/shorts"]),
+ytd-mini-guide-entry-renderer:has(a[href^="/shorts"]),
+ytd-mini-guide-entry-renderer:has([title="Shorts"]) {
+  display: none !important;
+}
+
+ytd-reel-item-renderer,
+ytd-reel-shelf-renderer,
+ytd-shelf-renderer:has(ytd-reel-item-renderer),
+ytd-video-renderer:has(a[href*="/shorts/"]),
+ytd-compact-video-renderer:has(a[href*="/shorts/"]) {
+  display: none !important;
+}
+
+/* Shorts in search results — new ViewModel UI */
+grid-shelf-view-model:has(ytm-shorts-lockup-view-model),
+ytm-shorts-lockup-view-model-v2,
+ytm-shorts-lockup-view-model {
+  display: none !important;
+}
+
+/* Shorts tab on channel pages (Polymer and post-Polymer) */
+tp-yt-paper-tab:has(a[href*="/shorts"]),
+yt-tab-shape:has(a[href*="/shorts"]),
+ytd-tab-renderer:has(a[href*="/shorts"]) {
+  display: none !important;
+}
+
+/* Shorts chip in the homepage filter bar */
+yt-chip-cloud-chip-renderer:has(a[href*="shorts"]) {
+  display: none !important;
+}
+
+/* Mobile bottom navigation bar Shorts button */
+ytm-pivot-bar-item-renderer:has(a[href^="/shorts"]),
+ytm-pivot-bar-item-renderer:has([aria-label*="Shorts"]),
+ytm-pivot-bar-item-renderer:has([aria-label*="shorts"]),
+.pivot-bar-item-tab.pivot-shorts {
+  display: none !important;
+}
