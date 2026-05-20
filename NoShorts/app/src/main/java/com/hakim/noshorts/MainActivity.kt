@@ -1,5 +1,6 @@
 package com.hakim.noshorts
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -13,22 +14,29 @@ import android.webkit.WebChromeClient
 import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.setPadding
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
+    private var statusBarHeight = 0
 
+    @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         webView = findViewById(R.id.webview)
 
-        ViewCompat.setOnApplyWindowInsetsListener(webView) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.setPadding(insets.left, insets.top, insets.right, insets.bottom)
-            WindowInsetsCompat.CONSUMED
+        val container = findViewById<FrameLayout>(R.id.container)
+        ViewCompat.setOnApplyWindowInsetsListener(container) { _, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
+            statusBarHeight = bars.top
+            val params = webView.layoutParams as FrameLayout.LayoutParams
+            params.topMargin = statusBarHeight
+            webView.layoutParams = params
+            insets
         }
 
         webView.settings.apply {
@@ -68,7 +76,6 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
                 webView.visibility = View.GONE
-                webView.setPadding(0,0,0,0)
                 window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             }
 
@@ -78,8 +85,10 @@ class MainActivity : AppCompatActivity() {
                 customViewCallback?.onCustomViewHidden()
                 customViewCallback = null
                 webView.visibility = View.VISIBLE
+                val params = webView.layoutParams as FrameLayout.LayoutParams
+                params.topMargin = statusBarHeight
+                webView.layoutParams = params
                 window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-                ViewCompat.requestApplyInsets(webView)
             }
         }
 
