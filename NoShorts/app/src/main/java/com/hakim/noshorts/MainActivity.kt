@@ -11,6 +11,8 @@ import android.view.View
 import android.view.WindowManager
 import android.webkit.WebChromeClient
 import android.widget.FrameLayout
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +24,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         webView = findViewById(R.id.webview)
+
+        ViewCompat.setOnApplyWindowInsetsListener(webView) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(insets.left, insets.top, insets.right, insets.bottom)
+            WindowInsetsCompat.CONSUMED
+        }
 
         webView.settings.apply {
             javaScriptEnabled = true
@@ -60,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
                 webView.visibility = View.GONE
+                webView.setPadding(0,0,0,0)
                 window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             }
 
@@ -70,6 +79,7 @@ class MainActivity : AppCompatActivity() {
                 customViewCallback = null
                 webView.visibility = View.VISIBLE
                 window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                ViewCompat.requestApplyInsets(webView)
             }
         }
 
